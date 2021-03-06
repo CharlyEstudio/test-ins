@@ -1,7 +1,11 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 // DB
 import { DbModule } from './db/db.module';
+
+// Repositories
+import { UsersRepository } from './core/services/users/repository/users.repository';
 
 // Services
 import { UsersService } from './core/services/users/users.service';
@@ -10,7 +14,7 @@ import { UsersService } from './core/services/users/users.service';
 import { UsersController } from './controllers/users/users.controller';
 
 @Module({
-  imports: [DbModule],
+  imports: [DbModule, TypeOrmModule.forFeature([UsersRepository])],
   controllers: [UsersController],
   providers: [UsersService],
 })
