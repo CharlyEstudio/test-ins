@@ -19,9 +19,9 @@ export class UsersController {
         try {
             const users: UserModel[] = await this.usersService.getUsers();
             if (users.length === 0) {
-                return res.status(HttpStatus.NOT_FOUND).json({
+                return res.status(HttpStatus.OK).json({
                     status: false,
-                    code: HttpStatus.NOT_FOUND,
+                    code: HttpStatus.OK,
                     payload: 'No hay usuarios registrados'
                 });
             }
@@ -70,9 +70,9 @@ export class UsersController {
     async saveUser(@Body() user: UserModel, @Res() res: Response, @Req() req: Request): Promise<any> {
         try {
             if (!user) {
-                return res.status(HttpStatus.NOT_FOUND).json({
+                return res.status(HttpStatus.OK).json({
                     status: false,
-                    code: HttpStatus.NOT_FOUND,
+                    code: HttpStatus.OK,
                     payload: 'No hay datos para registrar usuario'
                 });
             }
@@ -105,9 +105,9 @@ export class UsersController {
     async updateUser(@Body() user: UserModel, @Res() res: Response, @Req() req: Request): Promise<any> {
         try {
             if (!user.id) {
-                return res.status(HttpStatus.NOT_FOUND).json({
+                return res.status(HttpStatus.OK).json({
                     status: false,
-                    code: HttpStatus.NOT_FOUND,
+                    code: HttpStatus.OK,
                     payload: 'Para actualizar el usuario, es necesario el ID'
                 });
             }
